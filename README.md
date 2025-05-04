@@ -33,27 +33,15 @@ Based on the current view, the application provides reference sections for:
     *   **HTML5:** Structure of the web page.
     *   **Tailwind CSS:** Utility-first CSS framework for styling.
     *   **PostCSS:** Tool for transforming CSS with JavaScript plugins.
-    *   *(Specific UI Framework like React, Vue, Svelte might be used - inferred from `.tsx` files if present, but not explicitly confirmed)*
-*   **Package Manager:**
-    *   **npm:** Used for managing project dependencies (indicated by `package-lock.json`).
 *   **Deployment:**
     *   **Vercel:** Platform for frontend deployment and hosting.
 
-## Resources & Credits
-
-*(This section requires your input - list any external APIs, specific fonts, icon sets, or data sources you used)*
-
-*   Example: Font - [Name of Font] from [Source URL]
-*   Example: Kanji Data - Sourced from [Data Source Name/URL]
-
 ## Planned Future Improvements
 
-*(This section requires your input - list features you intend to add)*
-
-*   Example: Interactive flashcards for Kanji and Vocabulary.
-*   Example: Quizzes to test grammar and vocabulary knowledge.
-*   Example: User accounts to track progress.
-*   Example: Audio pronunciation for vocabulary.
+*   Audio pronunciation for vocabulary.
+*   Sentence Breakdowns and more features that allow for improved interactability between user and page.
+*   Interactive flashcards for Kanji and Vocabulary.
+*   Quizzes to test grammar and vocabulary knowledge.
 
 ## Author
 
@@ -61,6 +49,24 @@ Based on the current view, the application provides reference sections for:
 
 ## License
 
-*(Please specify a license if desired, e.g., MIT. If not specified, standard copyright applies)*
+MIT License
 
 Copyright (c) 2024 itskieren
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
