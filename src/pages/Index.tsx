@@ -43,10 +43,10 @@ const Index = () => {
                 </h3>
                 <div className="text-base text-gray-800 space-y-4 leading-relaxed font-sans">
                     <ul className="space-y-3">
-                        <InfoListItem> **Sentence Order:** Often Subject-Object-Verb (SOV). English is SVO. Example: <span className="font-jp font-medium text-sm bg-theme-light-gray px-1 rounded">私は りんごを 食べます</span> (Watashi wa ringo o tabemasu) means "I apple eat." </InfoListItem>
-                        <InfoListItem> **Particles are Key:** Tiny words like <span className="font-jp font-medium">は</span> (wa), <span className="font-jp font-medium">が</span> (ga), <span className="font-jp font-medium">を</span> (o) mark a word's role (topic, subject, object). They're essential! </InfoListItem>
-                        <InfoListItem> **Politeness Levels:** Language changes based on who you're talking to. Start with the polite verb ending <span className="font-jp font-medium">-ます</span> (-masu). </InfoListItem>
-                         <InfoListItem> **Dropping Pronouns:** 'I' (<span className="font-jp font-medium">私</span>) and 'You' (<span className="font-jp font-medium">あなた</span>) are often left out if the context makes it clear. </InfoListItem>
+                        <InfoListItem> Sentence Order: Often Subject-Object-Verb (SOV). English is SVO. Example: <span className="font-jp font-medium text-sm bg-theme-light-gray px-1 rounded">私は りんごを 食べます</span> (Watashi wa ringo o tabemasu) means "I apple eat." </InfoListItem>
+                        <InfoListItem> Particles are Key: Tiny words like <span className="font-jp font-medium">は</span> (wa), <span className="font-jp font-medium">が</span> (ga), <span className="font-jp font-medium">を</span> (o) mark a word's role (topic, subject, object). They're essential! </InfoListItem>
+                        <InfoListItem> Politeness Levels: Language changes based on who you're talking to. Start with the polite verb ending <span className="font-jp font-medium">-ます</span> (-masu). </InfoListItem>
+                         <InfoListItem> Dropping Pronouns: 'I' (<span className="font-jp font-medium">私</span>) and 'You' (<span className="font-jp font-medium">あなた</span>) are often left out if the context makes it clear. </InfoListItem>
                     </ul>
                  </div>
             </div>
@@ -56,7 +56,7 @@ const Index = () => {
                     Simple & Consistent Vowels
                 </h3>
                  <div className="text-base text-gray-800 space-y-4 leading-relaxed font-sans">
-                     <p className="flex items-start gap-2"> <CheckCircle size={18} className="text-theme-pink-vibrant opacity-80 mt-1 flex-shrink-0" /> <span>Japanese has only **5 pure vowel sounds**. Unlike English (which has many more!), these sounds *don't change*.</span> </p>
+                     <p className="flex items-start gap-2"> <CheckCircle size={18} className="text-theme-pink-vibrant opacity-80 mt-1 flex-shrink-0" /> <span>Japanese has only 5 pure vowel sounds. Unlike English (which has many more!), these sounds *don't change*.</span> </p>
                     <ul className="list-none space-y-1.5 my-2 font-medium bg-theme-light-gray p-4 rounded-xl border border-theme-medium-gray/50 text-lg">
                         <li><span className="font-jp font-black text-theme-pink-vibrant mr-2">あ (a)</span> ≈ 'a' in "f<u>a</u>ther"</li>
                         <li><span className="font-jp font-black text-theme-pink-vibrant mr-2">い (i)</span> ≈ 'ee' in "s<u>ee</u>"</li>
