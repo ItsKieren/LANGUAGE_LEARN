@@ -10,8 +10,8 @@ Built with modern web technologies (TypeScript, Vite, Tailwind CSS) for a clean 
 
 ## Live Demo
 
-You can try the live version here: [[https://www.learnjp.app/](https://languagelearnjp.vercel.app/)]([https://www.learnjp.app/](https://languagelearnjp.vercel.app/)
-*(Note: The custom domain `learnjp.app` is currently experiencing configuration issues on Vercel, as indicated by previous checks. This link will function correctly once the DNS settings are validated by Vercel.)*
+You can try the live version here: [[https://www.learnjp.app](https://languagelearnjp.vercel.app/)/]
+
 
 ## Features
 
