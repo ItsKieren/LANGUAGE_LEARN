@@ -10,7 +10,7 @@ Built with modern web technologies (TypeScript, Vite, Tailwind CSS) for a clean 
 
 ## Live Demo
 
-You can try the live version here: [[https://www.learnjp.app](https://languagelearnjp.vercel.app/)/]
+You can try the live version here: [[https://languagelearnjp.vercel.app/](https://languagelearnjp.vercel.app/)/]
 
 
 ## Features
