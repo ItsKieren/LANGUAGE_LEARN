@@ -1,114 +1,101 @@
-/* Import Fonts - Ensure weights are included */
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Poppins:wght@400;500;600;700;800;900&display=swap');
+/* src/index.css */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Poppins:wght@400;500;600;700;800;900&display=swap');
 
-/* Tailwind Directives */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Base Layer */
 @layer base {
+  /* Light theme definition (optional) */
   :root {
-    /* CSS Variables matching final Tailwind config */
-    --background: 255 100% 100%; /* theme-white */
-    --foreground: 225 16% 10%;   /* theme-dark approx */
-    --card: 255 100% 100%;
-    --card-foreground: 225 16% 10%;
-    --popover: 255 100% 100%;
-    --popover-foreground: 225 16% 10%;
-    --primary: 327 100% 59%; /* theme-pink-vibrant approx */
-    --primary-foreground: 0 0% 100%; /* theme-white */
-    --secondary: 220 14% 96%; /* theme-light-gray approx */
-    --secondary-foreground: 225 16% 10%;
-    --muted: 220 14% 96%;
-    --muted-foreground: 220 9% 46%;
-    --accent: 336 98% 68%; /* theme-accent approx */
-    --accent-foreground: 225 16% 10%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 220 13% 91%; /* theme-medium-gray approx */
-    --input: 220 13% 91%;
-    --ring: 327 100% 59%; /* theme-pink-vibrant */
-    --radius: 1rem; /* Even more rounded default */
+     /* ... light theme variables if needed ... */
+     --radius-light: 0.6rem;
   }
-  /* Add .dark class variables here if needed */
+
+  /* --- Dark Theme Neon Palette --- */
+  .dark {
+    --background: 225 30% 7%;        /* Even Deeper Navy/Black */
+    --foreground: 210 60% 97%;       /* Bright Off-White */
+
+    --card: 225 30% 12%;          /* Slightly Lighter Navy Card BG */
+    --card-foreground: 210 60% 95%;   /* Card Text */
+
+    --popover: 225 30% 10%;
+    --popover-foreground: 210 60% 97%;
+
+    /* --- Core Neon Colors --- */
+    --primary: 335 100% 65%;         /* Vibrant Pink */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 185 100% 50%;       /* Electric Cyan */
+    --secondary-foreground: 225 30% 7%; /* Dark text on Cyan */
+
+    --accent: 180 100% 70%;          /* Neon Lime Green (Replaced Purple) */
+    --accent-foreground: 225 30% 7%;    /* Dark text on Lime Green */
+
+    /* --- Supporting Colors --- */
+    --muted: 220 20% 18%;            /* Muted Dark BG */
+    --muted-foreground: 210 30% 60%; /* Muted Text */
+
+    --destructive: 0 90% 65%;        /* Neon Red */
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 210 25% 25%;           /* Darker Muted Border */
+    --input: 220 20% 15%;
+    --ring: 185 90% 55%;             /* Cyan ring */
+
+    --radius: 0.5rem; /* Keep Sharp radius */
+  }
 }
 
 @layer base {
   * {
-    /* CORRECTED: Only apply the border color variable */
-    @apply border-border;
-    /* box-sizing: border-box is applied by @tailwind base */
+    @apply border-border transition-colors duration-150 ease-in-out;
   }
-  html { @apply scroll-smooth scroll-pt-24; } /* Increased scroll padding */
   body {
-    @apply bg-theme-pink-pale text-theme-dark font-sans font-normal;
+    @apply bg-background text-foreground font-sans antialiased;
     min-height: 100vh;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    overflow-x: hidden;
   }
-  .font-jp { font-family: "Noto Sans JP", sans-serif; }
-  h1, h2, h3 { @apply font-black tracking-tighter; }
-  h1 { @apply text-4xl md:text-5xl lg:text-6xl; }
-  h2 { @apply text-3xl md:text-4xl; }
-  h3 { @apply text-xl md:text-2xl font-extrabold; }
+   .font-japanese {
+    font-family: "Noto Sans JP", sans-serif;
+    @apply font-semibold;
+   }
+  details > summary { @apply list-none; }
+  details > summary::-webkit-details-marker { @apply hidden; }
 
-  ::selection {
-    background-color: theme('colors.theme-pink-vibrant / 0.8');
-    color: theme('colors.theme-white');
-  }
-  ::-webkit-scrollbar { width: 10px; height: 10px; }
-  ::-webkit-scrollbar-track { background: theme('colors.theme-pink-pale'); }
-  ::-webkit-scrollbar-thumb { background: theme('colors.theme-pink-soft'); border-radius: 5px; border: 2px solid theme('colors.theme-pink-pale'); }
-  ::-webkit-scrollbar-thumb:hover { background: theme('colors.theme-accent'); }
+  /* Line break styling for info cards */
+   .info-list-item > div { @apply block; }
+   .info-list-item strong { @apply block mb-0.5; }
 }
 
+/* Accordion Component Styles */
 @layer components {
-    .section-title {
-        @apply text-center mb-6 md:mb-8 font-sans font-black tracking-tight relative inline-block mx-auto;
-        @apply text-gradient-pink; /* Applied gradient text */
+    .accordion-summary {
+        @apply flex justify-between items-center p-4 cursor-pointer rounded-t-lg transition-all duration-200 ease-out;
+        /* Use Card BG, border uses Secondary (Cyan) */
+        @apply bg-card border-2 border-secondary/60 hover:border-secondary;
+        /* Text color uses Secondary (Cyan) */
+        @apply text-secondary font-extrabold text-lg tracking-tight;
+        box-shadow: inset 0 1px 2px hsl(var(--background) / 0.5);
+    }
+    /* Open State */
+    details[open] > .accordion-summary {
+        @apply rounded-b-none border-b-transparent bg-secondary/10;
+        @apply border-secondary shadow-glow-secondary-sm;
+        @apply text-foreground; /* Brighter text when open */
     }
 
-    .content-card {
-        @apply bg-gradient-to-br from-theme-white to-theme-light-gray p-6 md:p-8 rounded-3xl shadow-lg border-2 border-theme-white w-full;
-        box-shadow: inset 0 1px 3px rgba(0,0,0,0.05), 0 4px 12px rgba(0,0,0,0.08);
+    /* Content Area */
+    .accordion-content {
+         @apply p-0 overflow-hidden border-2 border-t-0 border-secondary/60 rounded-b-lg bg-card shadow-inner; /* Cyan border */
+         & > div > table { @apply text-base; }
     }
-    .intro-card {
-         @apply content-card border-theme-pink-soft/50; /* Overrides border for intro */
-    }
-    .table-card {
-        @apply bg-theme-white border border-theme-medium-gray/60 rounded-2xl overflow-hidden shadow-md w-full h-full flex flex-col;
-    }
-    .y2k-button {
-        @apply inline-block text-sm font-semibold bg-theme-white text-theme-pink-vibrant px-6 py-2.5 rounded-full shadow-md hover:bg-theme-pink-pale hover:shadow-glow-pink-sm transition-all duration-300 ease-in-out;
-    }
-}
 
-/* Utilities */
-.text-gradient-pink {
-  @apply bg-gradient-to-r from-theme-pink-vibrant via-theme-accent to-theme-purple bg-clip-text text-transparent;
-}
-.bg-pattern-dots-subtle {
-    background-image: radial-gradient(theme('colors.theme-pink-soft / 0.1') 1px, transparent 1px);
-    background-size: 8px 8px;
-}
-
-/* Table Cell Styles */
-.kanji-cell {
-    font-family: "Noto Sans JP", sans-serif;
-    @apply font-black text-5xl sm:text-6xl md:text-7xl align-middle text-center p-3 md:p-4 text-theme-pink-vibrant;
-}
-.hiragana-cell {
-    font-family: "Noto Sans JP", sans-serif;
-    @apply font-bold text-3xl sm:text-4xl md:text-5xl align-middle text-center p-3 md:p-4 text-theme-accent;
-}
-.vocab-cell {
-    @apply px-4 py-4 align-middle text-sm md:text-base text-theme-dark font-medium;
-}
-.meaning-cell {
-    @apply px-4 py-4 align-middle text-sm text-gray-600;
-}
-.table-header-cell {
-     @apply px-4 py-3 text-left text-xs font-extrabold uppercase tracking-wider whitespace-nowrap;
+     /* Chevron */
+    .accordion-chevron {
+        @apply transition-transform duration-300 ease-out text-secondary group-open:text-foreground;
+    }
+    details[open] .accordion-chevron {
+        @apply rotate-180;
+    }
 }
