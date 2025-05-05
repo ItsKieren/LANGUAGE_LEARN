@@ -1,6 +1,6 @@
 # LearnJapanese (にほんご学習)
 
-<img width="961" alt="Screenshot of the LearnJapanese application showing sections for Grammar, Kanji, Hiragana, Months, and Time" src="https://github.com/user-attachments/assets/057bb716-e69f-477a-825f-83b683a4f121" />
+<img width="1081" alt="Screenshot 2025-05-05 at 3 39 10 PM" src="https://github.com/user-attachments/assets/6b97cd55-e49b-4a4e-84f7-2246752be08b" />
 
 ## Description
 
@@ -9,6 +9,7 @@ LearnJapanese is a web application designed to aid users in learning the Japanes
 Built with modern web technologies (TypeScript, Vite, Tailwind CSS) for a clean and responsive user experience, deployed via Vercel.
 
 ## Live Demo
+
 
 You can try the live version here: [[https://languagelearnjp.vercel.app/](https://languagelearnjp.vercel.app/)/]
 
