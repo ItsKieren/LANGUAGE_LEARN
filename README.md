@@ -1,4 +1,4 @@
-# LearnJapanese (にほんご学習)
+# Learn Japanese (にほんご学習)
 
 <img width="1081" alt="Screenshot 2025-05-05 at 3 39 56 PM" src="https://github.com/user-attachments/assets/52fbfb39-1cf5-4e36-a953-bda70fce158f" />
 
