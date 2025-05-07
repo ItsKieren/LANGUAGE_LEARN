@@ -13,13 +13,14 @@
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true,
+    "noEmit": true, // Correct for Vite app source
     "jsx": "react-jsx",
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"]
     }
   },
-  "include": ["src", "tailwind.config.ts", "vite.config.ts", "postcss.config.js"],
+
+  "include": ["src"], // Focus main tsconfig on your app's source code
   "references": [{ "path": "./tsconfig.node.json" }]
 }
