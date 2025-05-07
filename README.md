@@ -1,48 +1,60 @@
-# Learn Japanese (にほんご学習)
+# Language Kickstart
 
-<img width="1081" alt="Screenshot 2025-05-05 at 3 39 56 PM" src="https://github.com/user-attachments/assets/52fbfb39-1cf5-4e36-a953-bda70fce158f" />
+<img width="919" alt="Screenshot 2025-05-07 111501" src="https://github.com/user-attachments/assets/6b9c8bbf-8e83-455b-b835-236971240122" />
 
 ## Description
 
-LearnJapanese is a web application designed to aid users in learning the Japanese language. It presents key concepts including core grammar rules, essential Hiragana vocabulary, foundational Kanji characters, months of the year, and time-related terms in an organized, easy-to-reference format.
+Language Kickstart is a vibrant web application designed to help users begin their journey in learning new languages, currently featuring **Japanese** and **Spanish**. It presents key concepts including core grammar rules and essential vocabulary in an organized, easy-to-reference format, all wrapped in a fun, Y2K-inspired retro theme.
 
-Built with modern web technologies (TypeScript, Vite, Tailwind CSS) for a clean and responsive user experience, deployed via Vercel.
+Built with modern web technologies (TypeScript, Vite, React, Tailwind CSS) for a clean, responsive, and engaging user experience. Deployed via Vercel.
 
 ## Live Demo
 
+<img width="919" alt="Screenshot of the Language Kickstart App showing language selection" src="https://github.com/user-attachments/assets/58dea1ed-2e30-411f-99f0-2081394fadef" />
 
-You can try the live version here: [[https://languagelearnjp.vercel.app/](https://languagelearnjp.vercel.app/)/]
-
+You can try the live version here: [https://languagelearnjp.vercel.app/](https://languagelearnjp.vercel.app/)
 
 ## Features
 
-Based on the current view, the application provides reference sections for:
+The application provides a user-friendly interface to switch between languages and learn:
 
-*   **Core Grammar Basics:** Explanations of fundamental Japanese grammar concepts like Sentence Order (SOV), key particles (は, が, を), politeness levels (-masu), and pronoun usage.
-*   **Simple & Consistent Vowels:** Guide to the pronunciation of the 5 basic Japanese vowels (a, i, u, e, o).
-*   **Kanji Spotlight:** Presentation of common foundational Kanji characters (like 日, 人, 水, 大, 小, 月, 火, 木, 金, 土, 年, 円) including their readings (kun'yomi/on'yomi where applicable), Romaji transliteration, and English meanings.
-*   **Essential Hiragana:** Displays common words and essential phrases written in Hiragana (like こんにちは, ありがとう, これ, それ, あれ, はい, いいえ, です, ます, ください, おいしい, かわいい) with Romaji and meanings.
-*   **Months of the Year:** A list of the Japanese names for the months (一月 to 十二月) with readings, Romaji, and meanings.
-*   **Time Related Vocabulary:** Reference for common time-related Japanese words (like 時間, 分, 時, 今, 今日, 明日, 昨日, 朝, 昼, 夜, 週, 毎) with readings, Romaji, and meanings.
-*   **Clean UI:** Information is presented clearly using distinct cards for each section.
+*   **Language Selection:** Easily switch between Japanese and Spanish learning modules.
+*   **Core Grammar Basics:**
+    *   **Japanese:** Explanations of fundamental concepts like Sentence Order (SOV), key particles (は, が, を), politeness levels (-masu), and pronoun usage.
+    *   **Spanish:** Introduction to noun genders, verb conjugation basics, subject pronoun usage, and the difference between "Ser" and "Estar."
+*   **Pronunciation Guides (Vowel/Sound Checks):**
+    *   **Japanese:** Guide to the pronunciation of the 5 basic Japanese vowels (a, i, u, e, o) and rhythm.
+    *   **Spanish:** Overview of Spanish vowel sounds (a, e, i, o, u) and key consonant sounds like Ñ, LL, and RR.
+*   **Essential Vocabulary Lists:** Accordion-style lists for easy browsing of foundational vocabulary, categorized for clarity (e.g., Greetings, Numbers, Days of the Week, Basic Nouns, etc.), presented with:
+    *   Native script (Hiragana/Kanji for Japanese, Spanish words for Spanish)
+    *   Romaji transliteration (for Japanese)
+    *   English meanings.
+*   **Responsive Y2K Theme:** A fun, retro-inspired visual design that's engaging and works well on different screen sizes.
 
 ## Technologies Used (Tech Stack)
 
 *   **Frontend:**
+    *   **React:** JavaScript library for building user interfaces.
     *   **TypeScript:** For static typing and robust code.
     *   **Vite:** Fast frontend build tool and development server.
-    *   **HTML5:** Structure of the web page.
-    *   **Tailwind CSS:** Utility-first CSS framework for styling.
+    *   **HTML5 & CSS3:** Structure and core styling of the web page.
+    *   **Tailwind CSS:** Utility-first CSS framework for rapid UI development.
+    *   **Lucide React:** For clean and consistent icons.
     *   **PostCSS:** Tool for transforming CSS with JavaScript plugins.
 *   **Deployment:**
     *   **Vercel:** Platform for frontend deployment and hosting.
 
 ## Planned Future Improvements
 
-*   Audio pronunciation for vocabulary.
-*   Sentence Breakdowns and more features that allow for improved interactability between user and page.
-*   Interactive flashcards for Kanji and Vocabulary.
-*   Quizzes to test grammar and vocabulary knowledge.
+*   **More Languages:** Expand the "Kickstart" to include other popular languages.
+*   **Audio Pronunciation:** For all vocabulary items in each language.
+*   **Interactive Exercises:**
+    *   Flashcards for vocabulary.
+    *   Quizzes to test grammar and vocabulary knowledge.
+    *   Sentence building exercises.
+*   **Advanced Topics:** Gradually introduce more complex grammar and vocabulary sections.
+*   **User Accounts & Progress Tracking:** Allow users to save their learning progress.
+*   **Theme Customization:** Potentially offer different visual themes.
 
 ## Author
 
