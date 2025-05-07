@@ -10,7 +10,7 @@ Built with modern web technologies (TypeScript, Vite, React, Tailwind CSS) for a
 
 <img width="919" alt="Screenshot of the Language Kickstart App showing language selection" src="https://github.com/user-attachments/assets/58dea1ed-2e30-411f-99f0-2081394fadef" />
 
-You can try the live version here: [https://languagelearnjp.vercel.app/](https://languagelearnjp.vercel.app/)
+You can try the live version here: **[language-learn.vercel.app](https://language-learn.vercel.app)**
 
 ## Features
 
@@ -27,7 +27,7 @@ The application provides a user-friendly interface to switch between languages a
     *   Native script (Hiragana/Kanji for Japanese, Spanish words for Spanish)
     *   Romaji transliteration (for Japanese)
     *   English meanings.
-*   **Responsive Y2K Theme:** A fun, retro-inspired visual design that's engaging and works well on different screen sizes.
+*   **Responsive Theme:** A fun, retro-inspired visual design that's engaging and works well on different screen sizes.
 
 ## Technologies Used (Tech Stack)
 
@@ -46,12 +46,7 @@ The application provides a user-friendly interface to switch between languages a
 
 *   **More Languages:** Expand the "Kickstart" to include other popular languages.
 *   **Audio Pronunciation:** For all vocabulary items in each language.
-*   **Interactive Exercises:**
-    *   Flashcards for vocabulary.
-    *   Quizzes to test grammar and vocabulary knowledge.
-    *   Sentence building exercises.
 *   **Advanced Topics:** Gradually introduce more complex grammar and vocabulary sections.
-*   **User Accounts & Progress Tracking:** Allow users to save their learning progress.
 *   **Theme Customization:** Potentially offer different visual themes.
 
 ## Author
