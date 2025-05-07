@@ -1,101 +1,62 @@
 /* src/index.css */
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Poppins:wght@400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bungee&family=Poppins:wght@400;500;600;700;800;900&family=Press+Start+2P&family=Noto+Sans+JP:wght@400;500;700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
-  /* Light theme definition (optional) */
   :root {
-     /* ... light theme variables if needed ... */
-     --radius-light: 0.6rem;
+    --radius: theme('borderRadius.y2k');
   }
 
-  /* --- Dark Theme Neon Palette --- */
-  .dark {
-    --background: 225 30% 7%;        /* Even Deeper Navy/Black */
-    --foreground: 210 60% 97%;       /* Bright Off-White */
-
-    --card: 225 30% 12%;          /* Slightly Lighter Navy Card BG */
-    --card-foreground: 210 60% 95%;   /* Card Text */
-
-    --popover: 225 30% 10%;
-    --popover-foreground: 210 60% 97%;
-
-    /* --- Core Neon Colors --- */
-    --primary: 335 100% 65%;         /* Vibrant Pink */
-    --primary-foreground: 0 0% 100%;
-
-    --secondary: 185 100% 50%;       /* Electric Cyan */
-    --secondary-foreground: 225 30% 7%; /* Dark text on Cyan */
-
-    --accent: 180 100% 70%;          /* Neon Lime Green (Replaced Purple) */
-    --accent-foreground: 225 30% 7%;    /* Dark text on Lime Green */
-
-    /* --- Supporting Colors --- */
-    --muted: 220 20% 18%;            /* Muted Dark BG */
-    --muted-foreground: 210 30% 60%; /* Muted Text */
-
-    --destructive: 0 90% 65%;        /* Neon Red */
-    --destructive-foreground: 0 0% 100%;
-
-    --border: 210 25% 25%;           /* Darker Muted Border */
-    --input: 220 20% 15%;
-    --ring: 185 90% 55%;             /* Cyan ring */
-
-    --radius: 0.5rem; /* Keep Sharp radius */
-  }
-}
-
-@layer base {
   * {
-    @apply border-border transition-colors duration-150 ease-in-out;
+    @apply border-y2k-border/50 transition-colors duration-200 ease-in-out;
   }
   body {
-    @apply bg-background text-foreground font-sans antialiased;
+    @apply bg-y2k-bg text-y2k-text font-body antialiased;
     min-height: 100vh;
   }
-   .font-japanese {
-    font-family: "Noto Sans JP", sans-serif;
+  .font-japanese {
+    font-family: "Noto Sans JP", theme('fontFamily.sans');
     @apply font-semibold;
-   }
+  }
+
   details > summary { @apply list-none; }
   details > summary::-webkit-details-marker { @apply hidden; }
 
-  /* Line break styling for info cards */
-   .info-list-item > div { @apply block; }
-   .info-list-item strong { @apply block mb-0.5; }
+  .info-list-item > div { @apply block; }
+  .info-list-item strong { @apply block mb-0.5 text-y2k-text-header; }
 }
 
-/* Accordion Component Styles */
 @layer components {
     .accordion-summary {
-        @apply flex justify-between items-center p-4 cursor-pointer rounded-t-lg transition-all duration-200 ease-out;
-        /* Use Card BG, border uses Secondary (Cyan) */
-        @apply bg-card border-2 border-secondary/60 hover:border-secondary;
-        /* Text color uses Secondary (Cyan) */
-        @apply text-secondary font-extrabold text-lg tracking-tight;
-        box-shadow: inset 0 1px 2px hsl(var(--background) / 0.5);
+        @apply flex justify-between items-center p-4 cursor-pointer rounded-t-y2k transition-all duration-200 ease-out;
+        @apply bg-y2k-bg-card border-2 border-y2k-border shadow-y2k-hard shadow-y2k-border-dark;
+        @apply text-y2k-text-header font-heading font-bold text-lg tracking-tight;
+        /* Using the correctly defined shadow and onPink text color */
+        @apply hover:bg-y2k-pink-light hover:text-y2k-text-onPink hover:border-y2k-pink-dark hover:shadow-y2k-glow-pink-md;
+        @apply active:transform active:translate-y-px active:shadow-y2k-inner;
     }
-    /* Open State */
+
     details[open] > .accordion-summary {
-        @apply rounded-b-none border-b-transparent bg-secondary/10;
-        @apply border-secondary shadow-glow-secondary-sm;
-        @apply text-foreground; /* Brighter text when open */
+        @apply rounded-b-none border-b-transparent bg-y2k-pink-light text-y2k-text-onPink;
+        @apply shadow-y2k-inner;
     }
 
-    /* Content Area */
     .accordion-content {
-         @apply p-0 overflow-hidden border-2 border-t-0 border-secondary/60 rounded-b-lg bg-card shadow-inner; /* Cyan border */
-         & > div > table { @apply text-base; }
+         @apply p-0 overflow-hidden border-2 border-t-0 border-y2k-border rounded-b-y2k bg-y2k-bg-card shadow-inner;
+         & > div > table {
+            @apply text-base text-y2k-text;
+            & th { @apply text-y2k-pink-dark; }
+            & tr:hover { @apply bg-y2k-pink-light/20; }
+         }
     }
 
-     /* Chevron */
     .accordion-chevron {
-        @apply transition-transform duration-300 ease-out text-secondary group-open:text-foreground;
+        @apply transition-transform duration-300 ease-out text-y2k-pink-dark group-hover:text-y2k-text-onPink;
     }
     details[open] .accordion-chevron {
-        @apply rotate-180;
+        @apply rotate-180 text-y2k-text-onPink;
     }
 }

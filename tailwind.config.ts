@@ -1,65 +1,109 @@
-import type { Config } from "tailwindcss";
-import defaultTheme from 'tailwindcss/defaultTheme';
-import plugin from 'tailwindcss/plugin';
+// tailwind.config.ts
+import type { Config } from 'tailwindcss'
 
-export default {
-	darkMode: 'class',
-	content: [
-		"./index.html",
-		"./src/**/*.{js,ts,jsx,tsx}",
-	],
-	prefix: "",
-	theme: {
-		container: { /* Defaults */ },
-		extend: {
-            fontFamily: { /* Defaults */ },
-            fontWeight: { /* Defaults */ },
-            textShadow: {
-                sm: '0 1px 2px var(--tw-shadow-color)',
-                DEFAULT: '0 2px 4px var(--tw-shadow-color)',
-                lg: '0 8px 16px var(--tw-shadow-color)',
-                'glow-primary-xs': '0 0 4px hsl(var(--primary) / 0.8)',
-                'glow-primary-sm': '0 0 8px hsl(var(--primary) / 0.9)', // Pink Glow
-                'glow-primary-md': '0 0 12px hsl(var(--primary) / 1)',
-                'glow-secondary-xs': '0 0 4px hsl(var(--secondary) / 0.8)',
-                'glow-secondary-sm': '0 0 8px hsl(var(--secondary) / 0.9)', // Cyan Glow
-                'glow-secondary-md': '0 0 12px hsl(var(--secondary) / 1)',
-                'glow-accent-xs': '0 0 4px hsl(var(--accent) / 0.8)',
-                'glow-accent-sm': '0 0 8px hsl(var(--accent) / 0.9)',   // Green Glow
-                'glow-white-sm': '0 0 10px rgba(255, 255, 255, 0.6)',
-            },
-			colors: { // Map to CSS variables
-				border: 'hsl(var(--border))',
-				input: 'hsl(var(--input))',
-				ring: 'hsl(var(--ring))',
-				background: 'hsl(var(--background))',
-				foreground: 'hsl(var(--foreground))',
-				primary: { DEFAULT: 'hsl(var(--primary))', foreground: 'hsl(var(--primary-foreground))' }, // Pink
-				secondary: { DEFAULT: 'hsl(var(--secondary))', foreground: 'hsl(var(--secondary-foreground))'}, // Cyan
-				destructive: { DEFAULT: 'hsl(var(--destructive))', foreground: 'hsl(var(--destructive-foreground))' }, // Red
-				muted: { DEFAULT: 'hsl(var(--muted))', foreground: 'hsl(var(--muted-foreground))' },
-				accent: { DEFAULT: 'hsl(var(--accent))', foreground: 'hsl(var(--accent-foreground))' }, // Lime Green
-				popover: { DEFAULT: 'hsl(var(--popover))', foreground: 'hsl(var(--popover-foreground))' },
-				card: { DEFAULT: 'hsl(var(--card))', foreground: 'hsl(var(--card-foreground))' },
-			},
-			borderRadius: { /* Use radius variable */ },
-            boxShadow: {
-                // Neon Glows using new palette vars
-                'glow-primary-sm': '0 0 10px 1px hsl(var(--primary) / 0.75)', // Pink
-                'glow-primary-md': '0 0 18px 3px hsl(var(--primary) / 0.75)',
-                'glow-secondary-sm': '0 0 10px 1px hsl(var(--secondary) / 0.75)', // Cyan
-                'glow-secondary-md': '0 0 18px 3px hsl(var(--secondary) / 0.75)',
-                'glow-accent-sm': '0 0 10px 1px hsl(var(--accent) / 0.75)',   // Green
-                'inner-glow': 'inset 0 0 8px 1px hsl(var(--foreground) / 0.08)',
-            },
-			keyframes: { /* Keep keyframes */ },
-			animation: { /* Keep animations */ }
-		}
-	},
-	plugins: [
-        require("tailwindcss-animate"),
-        plugin(function({ matchUtilities, theme }) {
-            matchUtilities( { 'text-shadow': (value) => ({ textShadow: value, }), }, { values: theme('textShadow') } )
-          }),
-    ],
-} satisfies Config;
+const config: Config = {
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
+  theme: {
+    extend: {
+      colors: {
+        'y2k-pink': {
+          DEFAULT: '#FF69B4',
+          light: '#FFB6C1',
+          dark: '#F91880',
+          accent: '#FFAED7',
+          deepDark: '#C70059',
+        },
+        'y2k-bg': {
+          DEFAULT: '#FFF5FA',
+          card: '#FFFFFF',
+          alt: '#FFEBF2',
+        },
+        'y2k-text': {
+          DEFAULT: '#4A4A4A',
+          header: '#2A0B3E',
+          muted: '#8B6B7B',
+          onPink: '#FFF5FA', // Text for on dark pink backgrounds
+          code: '#2A0B3E',
+        },
+        'y2k-border': {
+          DEFAULT: '#FFACC7',
+          dark: '#F91880',
+        },
+        'y2k-accent': {
+          blue: '#A0D2DB',
+          purple: '#D6BCFA',
+        },
+      },
+      fontFamily: {
+        'display': ['"Bungee"', 'cursive'],
+        'heading': ['"Poppins"', 'sans-serif'],
+        'body': ['"Poppins"', 'sans-serif'],
+        'pixel': ['"Press Start 2P"', 'cursive'],
+        'japanese': ['"Noto Sans JP"', 'sans-serif'],
+      },
+      borderRadius: {
+        'y2k': '10px',
+        'y2k-lg': '16px',
+        'y2k-sm': '6px',
+      },
+      boxShadow: {
+        'y2k-hard': '4px 4px 0px rgba(0, 0, 0, 0.65)',
+        'y2k-hard-pink': '3px 3px 0px var(--tw-shadow-color, #C70059)',
+        'y2k-soft': '0 0 12px 1px rgba(255, 182, 193, 0.4), 0 0 20px 4px rgba(255, 182, 193, 0.3)',
+        'y2k-inner': 'inset 2px 2px 5px rgba(0, 0, 0, 0.1), inset -2px -2px 4px rgba(255, 255, 255, 0.6)',
+        'y2k-button': '2px 2px 0px var(--tw-shadow-color, #2A0B3E)',
+        'y2k-glow-strong': '0 0 6px var(--tw-shadow-color, #FFB6C1), 0 0 12px var(--tw-shadow-color, #FF69B4)',
+        // Ensure this is correctly named and used.
+        // If you want a specific 'md' glow, it should be defined here.
+        // For simplicity, if 'y2k-soft' or 'y2k-glow-strong' can be used, that's preferable.
+        // Let's assume we want a distinct medium glow for the accordion hover:
+        'y2k-glow-pink-md': '0 0 8px rgba(255,105,180,0.5), 0 0 15px rgba(249,24,128,0.4)',
+      },
+      textShadow: {
+        'hard-sm': '1px 1px 0px rgba(0,0,0,0.6)',
+        'hard-md': '1.5px 1.5px 0px rgba(0,0,0,0.7)',
+        'pink-glow-sm': '0 0 4px #FFB6C1, 0 0 7px #FF69B4',
+        'pink-glow-header': '0 0 5px #FFB6C1, 0 0 8px #FF69B4',
+      },
+      keyframes: {
+        'fade-in': { '0%': { opacity: '0' }, '100%': { opacity: '1' } },
+        'slide-in-left': { '0%': { transform: 'translateX(-25px)', opacity: '0' }, '100%': { transform: 'translateX(0)', opacity: '1' } },
+        'slide-in-right': { '0%': { transform: 'translateX(25px)', opacity: '0' }, '100%': { transform: 'translateX(0)', opacity: '1' } },
+        'pulse-y2k': {
+          '0%, 100%': { transform: 'scale(1)', opacity: '1' },
+          '50%': { transform: 'scale(1.02)', opacity: '0.95' },
+        },
+      },
+      animation: {
+        'fade-in': 'fade-in 0.7s ease-out forwards',
+        'slide-in-left': 'slide-in-left 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards',
+        'slide-in-right': 'slide-in-right 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards',
+        'pulse-y2k': 'pulse-y2k 2.5s infinite ease-in-out',
+      },
+    },
+  },
+  plugins: [
+    function ({ addUtilities, theme }: { addUtilities: any, theme: any }) {
+      const newUtilities = {
+        '.text-shadow-hard-sm': {
+          textShadow: theme('textShadow.hard-sm'),
+        },
+        '.text-shadow-hard-md': {
+          textShadow: theme('textShadow.hard-md'),
+        },
+         '.text-shadow-pink-glow-sm': {
+          textShadow: theme('textShadow.pink-glow-sm'),
+        },
+        '.text-shadow-pink-glow-header': {
+          textShadow: theme('textShadow.pink-glow-header'),
+        },
+      }
+      addUtilities(newUtilities, ['responsive', 'hover'])
+    }
+  ],
+}
+
+export default config;

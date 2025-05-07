@@ -1,16 +1,9 @@
-// src/data/vocabularyData.ts
-export interface VocabularyItem {
-  japanese: string; // For Japanese, this is Kana/Kanji. For Spanish, it's the Spanish word.
-  romaji: string;   // For Japanese, this is Romaji. For Spanish, a pronunciation aid.
-  english: string;
-}
+// src/data/japaneseContent.tsx
+import { BookOpenCheck, ListChecks, Volume2, Sparkles } from 'lucide-react';
+import { LanguageContentData, VocabularyCategory } from './types';
 
-export interface VocabularyCategory {
-  title: string;
-  items: VocabularyItem[];
-}
-
-export const japaneseVocabularyData: VocabularyCategory[] = [
+// Full Japanese vocabulary (as provided by you previously)
+const japaneseVocabulary: VocabularyCategory[] = [
   {
     title: "Greetings & Basic Phrases",
     items: [
@@ -127,3 +120,41 @@ export const japaneseVocabularyData: VocabularyCategory[] = [
     ],
   },
 ];
+
+export const japaneseContent: LanguageContentData = {
+  code: 'jp',
+  name: '日本語 (Japanese)',
+  fontClass: 'font-japanese',
+  nativeTermKey: 'japanese',
+  transliterationTermKey: 'romaji',
+  pageTitle: 'Learn Japanese ☆ Retro Kickstart',
+  headerTitle: <>Japanese <span className="text-y2k-pink-dark">Kickstart</span></>,
+  headerSubtitle: "Your fun portal to Japanese grammar, sounds, & essential vocab! Let's go!",
+  customIcon: "data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22 style=%22filter: drop-shadow(1px 1px 0px %23FF69B4) drop-shadow(-0.5px -0.5px 0px %23fff);%22 fill=%22%23F91880%22>語</text></svg>",
+  grammarInfo: {
+    title: "Core Grammar Bits",
+    icon: BookOpenCheck,
+    points: [
+      { strong: "Sentence Order:", text: <>Usually Subject-Object-Verb (SOV). Ex: <span className="font-japanese font-bold text-y2k-pink-dark">私 は リンゴ を 食べます</span> (Watashi wa ringo o tabemasu) = 'I apple eat.'</>, icon: ListChecks },
+      { strong: "Particles are Key:", text: <>Tiny words like <code className="bg-y2k-bg-alt px-1.5 py-0.5 rounded-y2k-sm text-y2k-text-code font-bold">は (wa)</code>, <code className="bg-y2k-bg-alt px-1.5 py-0.5 rounded-y2k-sm text-y2k-text-code font-bold">が (ga)</code>, <code className="bg-y2k-bg-alt px-1.5 py-0.5 rounded-y2k-sm text-y2k-text-code font-bold">を (o)</code> mark a word's role. Super important!</>, icon: ListChecks },
+      { strong: "Politeness Levels:", text: <>Language style changes with context. Start polite with <code className="bg-y2k-bg-alt px-1.5 py-0.5 rounded-y2k-sm text-y2k-text-code font-bold">-ます (-masu)</code> forms.</>, icon: ListChecks },
+      { strong: "Dropping Pronouns:", text: <>'I' (<span className="font-japanese font-bold text-y2k-pink-dark">私</span>) & 'You' (<span className="font-japanese font-bold text-y2k-pink-dark">あなた</span>) are often skipped if clear from context.</>, icon: ListChecks },
+    ]
+  },
+  pronunciationInfo: {
+    title: "Vowel Sounds",
+    icon: Volume2,
+    intro: <>Japanese has 5 pure vowel sounds. Unlike English, they <strong className="text-y2k-pink-dark">don't change</strong>! Super consistent.</>,
+    points: [
+      { char: "あ", pronunciation: "(a)", example: <span className="font-body">≈ 'a' in "f<strong className="text-y2k-text/80">a</strong>ther"</span> },
+      { char: "い", pronunciation: "(i)", example: <span className="font-body">≈ 'ee' in "s<strong className="text-y2k-text/80">ee</strong>"</span> },
+      { char: "う", pronunciation: "(u)", example: <span className="font-body">≈ 'oo' in "f<strong className="text-y2k-text/80">oo</strong>d" (lips less round)</span> },
+      { char: "え", pronunciation: "(e)", example: <span className="font-body">≈ 'e' in "g<strong className="text-y2k-text/80">e</strong>t"</span> },
+      { char: "お", pronunciation: "(o)", example: <span className="font-body">≈ 'o' in "g<strong className="text-y2k-text/80">o</strong>"</span> },
+    ],
+    outro: <><Sparkles className="inline-block mr-1 h-4 w-4 text-y2k-accent-blue" /><strong>Rhythm:</strong> Most syllables are Consonant+Vowel (like <span className="font-japanese text-y2k-pink-dark">か</span> ka) or just a Vowel. Makes for a cool, even rhythm!</>,
+  },
+  vocabularyTitle: "Essential Vocab Lists",
+  vocabulary: japaneseVocabulary,
+  footerCheer: <>Keep it up! <span className="font-japanese text-y2k-pink-dark font-extrabold text-shadow-pink-glow-sm">がんばって</span> (Ganbatte!)</>,
+};

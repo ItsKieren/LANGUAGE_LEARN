@@ -1,0 +1,148 @@
+// src/data/spanishContent.tsx
+import { MessageSquareText, ListChecks, Mic2, Sparkles } from 'lucide-react';
+import { LanguageContentData, VocabularyCategory } from './types';
+
+const spanishVocabulary: VocabularyCategory[] = [
+  {
+    title: "Saludos y Frases Básicas (Greetings & Basic Phrases)",
+    items: [
+      { spanish: "Hola", english: "Hello" },
+      { spanish: "Buenos días", english: "Good morning" },
+      { spanish: "Buenas tardes", english: "Good afternoon / Good evening" },
+      { spanish: "Buenas noches", english: "Good night" },
+      { spanish: "Adiós", english: "Goodbye" },
+      { spanish: "Hasta luego", english: "See you later" },
+      { spanish: "Hasta pronto", english: "See you soon" },
+      { spanish: "Por favor", english: "Please" },
+      { spanish: "Gracias", english: "Thank you" },
+      { spanish: "De nada", english: "You're welcome" },
+      { spanish: "Sí", english: "Yes" },
+      { spanish: "No", english: "No" },
+      { spanish: "Perdón / Disculpe", english: "Excuse me / Sorry" },
+      { spanish: "¿Cómo estás?", english: "How are you? (informal)" },
+      { spanish: "¿Cómo está usted?", english: "How are you? (formal)" },
+      { spanish: "Bien, gracias", english: "Fine, thank you" },
+      { spanish: "Mucho gusto", english: "Nice to meet you" },
+    ],
+  },
+  {
+    title: "Números (1-10) (Numbers)",
+    items: [
+      { spanish: "Uno", english: "One" },
+      { spanish: "Dos", english: "Two" },
+      { spanish: "Tres", english: "Three" },
+      { spanish: "Cuatro", english: "Four" },
+      { spanish: "Cinco", english: "Five" },
+      { spanish: "Seis", english: "Six" },
+      { spanish: "Siete", english: "Seven" },
+      { spanish: "Ocho", english: "Eight" },
+      { spanish: "Nueve", english: "Nine" },
+      { spanish: "Diez", english: "Ten" },
+    ],
+  },
+  {
+    title: "Días de la Semana (Days of the Week)",
+    items: [
+        { spanish: "Lunes", english: "Monday" },
+        { spanish: "Martes", english: "Tuesday" },
+        { spanish: "Miércoles", english: "Wednesday" },
+        { spanish: "Jueves", english: "Thursday" },
+        { spanish: "Viernes", english: "Friday" },
+        { spanish: "Sábado", english: "Saturday" },
+        { spanish: "Domingo", english: "Sunday" },
+        { spanish: "Hoy", english: "Today" },
+        { spanish: "Mañana", english: "Tomorrow" },
+        { spanish: "Ayer", english: "Yesterday" },
+    ],
+  },
+  {
+    title: "Personas y Familia (People & Family)",
+    items: [
+        { spanish: "Hombre", english: "Man" },
+        { spanish: "Mujer", english: "Woman" },
+        { spanish: "Niño / Niña", english: "Boy / Girl" },
+        { spanish: "Amigo / Amiga", english: "Friend (m/f)" },
+        { spanish: "Familia", english: "Family" },
+        { spanish: "Padre", english: "Father" },
+        { spanish: "Madre", english: "Mother" },
+        { spanish: "Hermano / Hermana", english: "Brother / Sister" },
+    ],
+  },
+  {
+    title: "Comida y Bebida (Food & Drink)",
+    items: [
+        { spanish: "Agua", english: "Water" },
+        { spanish: "Comida", english: "Food / Meal" },
+        { spanish: "Pan", english: "Bread" },
+        { spanish: "Fruta", english: "Fruit" },
+        { spanish: "Carne", english: "Meat" },
+        { spanish: "Pescado", english: "Fish" },
+        { spanish: "Café", english: "Coffee" },
+        { spanish: "Té", english: "Tea" },
+    ],
+  },
+   {
+    title: "En Casa (At Home)",
+    items: [
+        { spanish: "Casa", english: "House / Home" },
+        { spanish: "Puerta", english: "Door" },
+        { spanish: "Ventana", english: "Window" },
+        { spanish: "Mesa", english: "Table" },
+        { spanish: "Silla", english: "Chair" },
+        { spanish: "Cama", english: "Bed" },
+    ],
+  },
+  {
+    title: "Palabras Interrogativas (Question Words)",
+    items: [
+      { spanish: "¿Qué?", english: "What?" },
+      { spanish: "¿Dónde?", english: "Where?" },
+      { spanish: "¿Quién?", english: "Who?" },
+      { spanish: "¿Cuándo?", english: "When?" },
+      { spanish: "¿Por qué?", english: "Why?" },
+      { spanish: "¿Cómo?", english: "How?" },
+      { spanish: "¿Cuál?", english: "Which (one)?" },
+      { spanish: "¿Cuánto/a/os/as?", english: "How much/many?" },
+    ],
+  },
+];
+
+export const spanishContent: LanguageContentData = {
+  code: 'es',
+  name: 'Español (Spanish)',
+  fontClass: 'font-body',
+  nativeTermKey: 'spanish',
+  pageTitle: 'Learn Spanish ☆ Retro Kickstart',
+  headerTitle: <>Spanish <span className="text-y2k-pink-dark">Kickstart</span></>,
+  headerSubtitle: "¡Tu portal divertido a la gramática, sonidos y vocabulario esencial del español! ¡Vamos!",
+  customIcon: "data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22 style=%22filter: drop-shadow(1px 1px 0px %23FF69B4) drop-shadow(-0.5px -0.5px 0px %23fff);%22 fill=%22%23F91880%22>💃</text></svg>",
+  grammarInfo: {
+    title: "Grammar 101",
+    icon: MessageSquareText,
+    points: [
+      { strong: "Noun Genders:", text: "Nouns are masculine or feminine (e.g., 'el libro' - the book, 'la mesa' - the table). Adjectives usually match the noun's gender!", icon: ListChecks },
+      { strong: "Verb Conjugation:", text: "Verbs change endings based on who's doing the action (yo, tú, él...) and tense. Example: 'hablar' (to speak) → 'yo hablo' (I speak).", icon: ListChecks },
+      { strong: "Subject Pronouns:", text: "Often skipped! The verb ending usually tells you who is doing the action. 'Hablo español' clearly means 'I speak Spanish'.", icon: ListChecks },
+      { strong: "Ser vs. Estar:", text: <>Two verbs for 'to be'! <code className="bg-y2k-bg-alt px-1.5 py-0.5 rounded-y2k-sm text-y2k-text-code font-bold">Ser</code> is for permanent traits/identity, <code className="bg-y2k-bg-alt px-1.5 py-0.5 rounded-y2k-sm text-y2k-text-code font-bold">Estar</code> for temporary states/locations.</>, icon: ListChecks },
+    ]
+  },
+  pronunciationInfo: {
+    title: "Sound Check",
+    icon: Mic2,
+    intro: <>Spanish pronunciation is pretty straightforward! Vowels are key and generally sound the same every time.</>,
+    points: [
+      { char: "A", pronunciation: "(ah)", example: <span className="font-body">like 'a' in "f<strong className="text-y2k-text/80">a</strong>ther" (e.g., c<strong className="text-y2k-text/80">a</strong>sa)</span> },
+      { char: "E", pronunciation: "(eh)", example: <span className="font-body">like 'e' in "b<strong className="text-y2k-text/80">e</strong>t" (e.g., m<strong className="text-y2k-text/80">e</strong>sa)</span> },
+      { char: "I", pronunciation: "(ee)", example: <span className="font-body">like 'ee' in "s<strong className="text-y2k-text/80">ee</strong>" (e.g., l<strong className="text-y2k-text/80">i</strong>bro)</span> },
+      { char: "O", pronunciation: "(oh)", example: <span className="font-body">like 'o' in "g<strong className="text-y2k-text/80">o</strong>" (e.g., h<strong className="text-y2k-text/80">o</strong>la)</span> },
+      { char: "U", pronunciation: "(oo)", example: <span className="font-body">like 'oo' in "m<strong className="text-y2k-text/80">oo</strong>n" (e.g., l<strong className="text-y2k-text/80">u</strong>na)</span> },
+      { char: "Ñ", pronunciation: "(enyeh)", example: <span className="font-body">like 'ny' in "ca<strong className="text-y2k-text/80">ny</strong>on" (e.g., Espa<strong className="text-y2k-text/80">ñ</strong>a)</span> },
+      { char: "LL", pronunciation: "(y/j)", example: <span className="font-body">like 'y' in "<strong className="text-y2k-text/80">y</strong>es" or 'j' in "<strong className="text-y2k-text/80">j</strong>et" (varies by region) (e.g., <strong className="text-y2k-text/80">ll</strong>ave)</span> },
+      { char: "RR", pronunciation: "(trilled r)", example: <span className="font-body">a rolled 'r' sound (e.g., pe<strong className="text-y2k-text/80">rr</strong>o)</span> },
+    ],
+    outro: <><Sparkles className="inline-block mr-1 h-4 w-4 text-y2k-accent-blue" /><strong>Tip:</strong> Listen to native speakers as much as possible to nail the rhythm and intonation!</>,
+  },
+  vocabularyTitle: "Vocabulario Esencial",
+  vocabulary: spanishVocabulary,
+  footerCheer: <>¡Sigue practicando! <span className="text-y2k-pink-dark font-extrabold text-shadow-pink-glow-sm">¡Tú puedes!</span> (You can do it!)</>,
+};

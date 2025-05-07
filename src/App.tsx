@@ -1,229 +1,228 @@
-import React from 'react';
-// Import UI components
+// src/App.tsx
+import { useState, useEffect, useMemo } from 'react';
 import {
   Card, CardContent, CardHeader, CardTitle,
   Table, TableBody, TableCell, TableHead, TableHeader, TableRow
 } from '@/components/ui';
-// Import utility and data
 import { cn } from '@/lib/utils';
-import { vocabularyData, VocabularyCategory, VocabularyItem } from '@/data/vocabularyData';
-// Import Icons
-import { BookOpenCheck, ListChecks, Sparkles, Volume2, ChevronDown } from 'lucide-react';
+import { LanguageContentData, VocabularyCategory, VocabularyItem, InfoPoint } from '@/data/types';
+import { japaneseContent } from '@/data/japaneseContent';
+import { spanishContent } from '@/data/spanishContent';
+import { ChevronDown, Heart, Globe2 } from 'lucide-react'; // Changed Palette to Globe2
 
-// --- Header Component ---
-const Header: React.FC = () => {
+type LanguageCode = 'jp' | 'es';
+
+const availableLanguages: Record<LanguageCode, LanguageContentData> = {
+  jp: japaneseContent,
+  es: spanishContent,
+};
+
+interface VocabularyTablePropsStandalone {
+  items: VocabularyItem[];
+  content: LanguageContentData;
+}
+const VocabularyTableComponent: React.FC<VocabularyTablePropsStandalone> = ({ items, content }) => {
+  if (!items || items.length === 0) {
+    return <p className="text-y2k-text-muted p-4 text-center">No vocabulary items here yet! (｡•́︿•̀｡)</p>;
+  }
   return (
-    <header className="mb-10 md:mb-16 text-center animate-fade-in">
-       {/* Main title uses Primary (Pink) */}
-       <h1 className="mx-4 text-5xl sm:text-6xl md:text-7xl font-black tracking-tighter text-primary mb-2 text-shadow-glow-primary-md animate-neon-flicker">
-         Japanese Kickstart
-       </h1>
-      <p className="text-lg md:text-xl text-foreground/80 max-w-2xl mx-auto font-semibold">
-        Your first steps into Japanese grammar, sounds, and essential vocabulary! Let's learn!
+    <div className="overflow-x-auto">
+      <Table>
+        <TableHeader>
+          <TableRow>
+            <TableHead className="w-[35%] min-w-[120px]">{content.nativeTermKey.charAt(0).toUpperCase() + content.nativeTermKey.slice(1)}</TableHead>
+            {content.transliterationTermKey && <TableHead className="w-[35%] min-w-[120px]">{content.transliterationTermKey.charAt(0).toUpperCase() + content.transliterationTermKey.slice(1)}</TableHead>}
+            <TableHead className={content.transliterationTermKey ? "w-[30%] min-w-[100px]" : "w-[65%] min-w-[150px]"}>English</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {items.map((item, index) => (
+            <TableRow key={index}>
+              <TableCell className={cn("font-bold text-lg md:text-xl text-y2k-pink-dark", content.fontClass)}> {/* Main term in strong pink */}
+                {item[content.nativeTermKey]}
+              </TableCell>
+              {content.transliterationTermKey && <TableCell className="text-y2k-text-muted italic font-medium text-sm">{item[content.transliterationTermKey]}</TableCell>}
+              <TableCell className="font-medium text-sm text-y2k-text">{item.english}</TableCell> {/* English in default text color */}
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </div>
+  );
+};
+
+interface LanguageSwitcherProps {
+  currentLangCode: LanguageCode;
+  onLangChange: (langCode: LanguageCode) => void;
+}
+const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ currentLangCode, onLangChange }) => {
+  return (
+    <nav className="mb-8 flex justify-center items-center space-x-3 p-2 bg-y2k-bg-alt rounded-y2k shadow-y2k-inner">
+      <Globe2 className="h-5 w-5 text-y2k-pink-dark mr-2" /> {/* Changed to Globe2 and slightly smaller */}
+      {(Object.keys(availableLanguages) as LanguageCode[]).map((langCode) => (
+        <button
+          key={langCode}
+          onClick={() => onLangChange(langCode)}
+          className={cn(
+            "px-4 py-2 font-heading text-xs sm:text-sm font-bold rounded-y2k-sm transition-all duration-200 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-y2k-pink-dark focus:ring-offset-2 focus:ring-offset-y2k-bg-alt", // Adjusted padding and text size
+            "border-2",
+            currentLangCode === langCode
+              ? "bg-y2k-pink text-y2k-text-onPink border-y2k-pink-dark shadow-y2k-button shadow-y2k-pink-deepDark/70 animate-pulse-y2k"
+              : "bg-y2k-bg-card text-y2k-text-header border-y2k-border hover:bg-y2k-pink-light hover:text-y2k-text-onPink hover:border-y2k-pink-dark"
+          )}
+        >
+          {availableLanguages[langCode].name}
+        </button>
+      ))}
+    </nav>
+  );
+};
+
+const AppHeaderComponent: React.FC<{ content: LanguageContentData }> = ({ content }) => {
+  return (
+    <header className="mb-10 md:mb-12 text-center animate-fade-in">
+      <h1 className="font-display text-5xl sm:text-6xl md:text-7xl text-y2k-pink mb-3 tracking-normal sm:tracking-wide text-shadow-pink-glow-header"
+          style={{ WebkitTextStroke: '1.5px #2A0B3E' }}>
+        {content.headerTitle}
+      </h1>
+      <p className="text-base sm:text-lg md:text-xl text-y2k-text max-w-2xl mx-auto font-heading font-medium px-2"> {/* Main text color for subtitle */}
+        {content.headerSubtitle}
       </p>
     </header>
   );
 };
 
-// --- Info Card Component ---
-interface InfoCardProps {
+interface GeneralInfoCardProps {
   title: string;
   icon?: React.ElementType;
-  children: React.ReactNode;
+  points?: InfoPoint[];
+  intro?: string | React.ReactNode;
+  pronunciationPoints?: LanguageContentData['pronunciationInfo']['points'];
+  outro?: string | React.ReactNode;
   className?: string;
-  titleClassName?: string;
+  currentFontClass: string;
 }
-const InfoCard: React.FC<InfoCardProps> = ({ title, icon: IconComponent, children, className, titleClassName }) => {
+const GeneralInfoCard: React.FC<GeneralInfoCardProps> = ({ title, icon: IconFromData, points, intro, pronunciationPoints, outro, className, currentFontClass }) => {
+  const CardIcon = IconFromData || Heart;
   return (
-    <Card className={cn("h-full flex flex-col", className)}>
+    <Card className={cn("h-full flex flex-col shadow-y2k-soft hover:shadow-y2k-glow-strong shadow-y2k-pink-accent", className)}>
       <CardHeader>
-         {/* Info Card titles use Primary (Pink) */}
-        <CardTitle className={cn("text-primary", titleClassName)}>
-          {IconComponent && <IconComponent className="inline-block mr-2 h-6 w-6 stroke-[2.5px] text-primary" />}
+        <CardTitle className="text-shadow-pink-glow-sm text-y2k-text-header"> {/* Card title with header text color */}
+          <CardIcon className="inline-block mr-2.5 h-6 w-6 stroke-[2.5px] text-y2k-pink-dark" /> {/* Icon with stronger pink */}
           {title}
         </CardTitle>
       </CardHeader>
-      <CardContent className="text-base leading-relaxed text-card-foreground space-y-5 flex-grow">
-        {children}
+      <CardContent className="text-base leading-relaxed space-y-3 flex-grow text-y2k-text"> {/* Card content with default text color */}
+        {intro && (typeof intro === 'string' ? <p className="mb-3">{intro}</p> : <div className="mb-3">{intro}</div>)}
+        {points && (
+          <ul className="list-none space-y-3.5 pl-1">
+            {points.map((point, index) => {
+              const PointIcon = point.icon || Heart;
+              return (
+              <li key={index} className="flex items-start info-list-item">
+                <PointIcon className="h-5 w-5 mr-3 mt-1 text-y2k-accent-blue flex-shrink-0" />
+                <div>
+                  <strong className="font-bold text-y2k-text-header">{point.strong}</strong>
+                  {typeof point.text === 'string' ? <span> {point.text}</span> : point.text}
+                </div>
+              </li>
+            )})}
+          </ul>
+        )}
+        {pronunciationPoints && (
+           <ul className="list-none space-y-2.5 pl-1">
+            {pronunciationPoints.map((point, index) => (
+              <li key={index} className="flex items-center font-medium">
+                {point.char && <span className={cn("text-xl text-y2k-accent-purple mr-3 w-8 text-center font-display", currentFontClass)}>{point.char}</span>}
+                <span className="text-y2k-text/90">{point.pronunciation} {typeof point.example === 'string' ? <span dangerouslySetInnerHTML={{ __html: point.example }}/> : point.example}</span>
+              </li>
+            ))}
+          </ul>
+        )}
+        {outro && (typeof outro === 'string' ? <p className="mt-3 pt-3 border-t border-y2k-border/30">{outro}</p> : <div className="mt-3 pt-3 border-t border-y2k-border/30">{outro}</div>)}
       </CardContent>
     </Card>
   );
 };
 
-// --- Grammar Info Component ---
-const GrammarInfo: React.FC = () => {
-  return (
-    <InfoCard title="Core Grammar Basics" icon={BookOpenCheck} className="animate-slide-in-left">
-      <ul className="list-none space-y-5 pl-1">
-        <li className="flex items-start info-list-item">
-           {/* Icons use Secondary (Cyan) */}
-          <ListChecks className="h-5 w-5 mr-3 mt-1 text-secondary flex-shrink-0" />
-          <div>
-            {/* Strong tags use Secondary (Cyan) */}
-            <strong className="font-bold text-secondary">Sentence Order:</strong>
-             {/* Japanese examples use Accent (Green) */}
-            <span>Often Subject-Object-Verb (SOV). Example: <span className="font-japanese font-bold text-accent">私はリンゴを食べます</span> (Watashi wa ringo o tabemasu) means 'I apple eat.'</span>
-          </div>
-        </li>
-        <li className="flex items-start info-list-item">
-         <ListChecks className="h-5 w-5 mr-3 mt-1 text-secondary flex-shrink-0" />
-          <div>
-            <strong className="font-bold text-secondary">Particles are Key:</strong>
-            {/* Code blocks use Accent (Green) */}
-            <span>Tiny words like <code className="bg-background px-1.5 py-0.5 rounded text-accent font-bold">は (wa)</code>, <code className="bg-background px-1.5 py-0.5 rounded text-accent font-bold">が (ga)</code>, <code className="bg-background px-1.5 py-0.5 rounded text-accent font-bold">を (o)</code> mark a word's role. Essential!</span>
-          </div>
-        </li>
-        <li className="flex items-start info-list-item">
-          <ListChecks className="h-5 w-5 mr-3 mt-1 text-secondary flex-shrink-0" />
-          <div>
-            <strong className="font-bold text-secondary">Politeness Levels:</strong>
-            <span>Language changes based on context. Start polite: <code className="bg-background px-1.5 py-0.5 rounded text-accent font-bold">-ます (-masu)</code>.</span>
-          </div>
-        </li>
-         <li className="flex items-start info-list-item">
-           <ListChecks className="h-5 w-5 mr-3 mt-1 text-secondary flex-shrink-0" />
-          <div>
-            <strong className="font-bold text-secondary">Dropping Pronouns:</strong>
-            <span>'I' (<span className="font-japanese font-bold text-accent">私</span>) and 'You' (<span className="font-japanese font-bold text-accent">あなた</span>) often omitted when clear.</span>
-          </div>
-        </li>
-      </ul>
-    </InfoCard>
-  );
-};
-
-// --- Vowel Info Component ---
-const VowelInfo: React.FC = () => {
-  return (
-    <InfoCard title="Simple & Consistent Vowels" icon={Volume2} className="animate-slide-in-right">
-       <ul className="list-none space-y-4 pl-1">
-        <li className="flex items-start info-list-item">
-           <Sparkles className="h-5 w-5 mr-3 mt-1 text-secondary flex-shrink-0" /> {/* Cyan icon */}
-           <div>
-                {/* Strong tag Secondary (Cyan) */}
-                <strong className="font-bold text-secondary">Just 5 Sounds!</strong>
-                {/* Highlight Primary (Pink) */}
-                <span>Japanese has only 5 pure vowel sounds. Unlike English, these sounds <strong className="text-primary">don't change</strong>. Predictable!</span>
-            </div>
-        </li>
-        <div className="pl-6 space-y-2">
-             {/* Japanese vowels use Accent (Green) */}
-            <li className="flex items-center font-semibold">
-                <span className="font-japanese text-xl text-accent mr-3 w-6 text-center">あ</span> (a) ≈ 'a' in "<strong className="font-sans text-foreground/70">fa</strong>ther"
-            </li>
-            <li className="flex items-center font-semibold">
-                <span className="font-japanese text-xl text-accent mr-3 w-6 text-center">い</span> (i) ≈ 'ee' in "s<strong className="font-sans text-foreground/70">ee</strong>"
-            </li>
-            <li className="flex items-center font-semibold">
-                <span className="font-japanese text-xl text-accent mr-3 w-6 text-center">う</span> (u) ≈ 'oo' in "f<strong className="font-sans text-foreground/70">oo</strong>d" (less round)
-            </li>
-            <li className="flex items-center font-semibold">
-                <span className="font-japanese text-xl text-accent mr-3 w-6 text-center">え</span> (e) ≈ 'e' in "g<strong className="font-sans text-foreground/70">e</strong>t"
-            </li>
-            <li className="flex items-center font-semibold">
-                <span className="font-japanese text-xl text-accent mr-3 w-6 text-center">お</span> (o) ≈ 'o' in "g<strong className="font-sans text-foreground/70">o</strong>"
-            </li>
-        </div>
-         <li className="flex items-start info-list-item">
-           <Sparkles className="h-5 w-5 mr-3 mt-1 text-secondary flex-shrink-0" />
-            <div>
-                <strong className="font-bold text-secondary">Rhythm:</strong>
-                <span>Most syllables = Consonant+Vowel (か ka) or just a Vowel. Creates a nice rhythm.</span>
-            </div>
-        </li>
-      </ul>
-    </InfoCard>
-  );
-};
-
-// --- Vocabulary Table Component ---
-interface VocabularyTableProps {
-  items: VocabularyItem[];
-}
-const VocabularyTable: React.FC<VocabularyTableProps> = ({ items }) => {
-  if (!items || items.length === 0) {
-    return <p className="text-muted-foreground p-4">No vocabulary items here yet!</p>;
-  }
-  return (
-    <Table>
-      <TableHeader>
-        <TableRow className="[&_th]:bg-transparent border-b border-border/50">
-           {/* Headers use Accent (Green) */}
-          <TableHead className="w-[35%]">Japanese</TableHead>
-          <TableHead className="w-[35%]">Romaji</TableHead>
-          <TableHead className="w-[30%]">English</TableHead>
-        </TableRow>
-      </TableHeader>
-      <TableBody>
-        {items.map((item, index) => (
-          <TableRow key={index}>
-             {/* Japanese terms use Primary (Pink) */}
-            <TableCell className={cn("font-japanese font-bold text-lg md:text-xl text-primary")}>
-              {item.japanese}
-            </TableCell>
-            <TableCell className="text-muted-foreground italic font-medium text-base">{item.romaji}</TableCell>
-            <TableCell className="text-card-foreground font-medium text-base">{item.english}</TableCell>
-          </TableRow>
-        ))}
-      </TableBody>
-    </Table>
-  );
-};
-
-// --- Vocabulary Accordion Item ---
 interface VocabularyAccordionProps {
   category: VocabularyCategory;
   index: number;
+  content: LanguageContentData;
 }
-const VocabularyAccordionItem: React.FC<VocabularyAccordionProps> = ({ category, index }) => {
-    const animationDelay = `${600 + index * 60}ms`;
-
+const VocabularyAccordionItem: React.FC<VocabularyAccordionProps> = ({ category, index, content }) => {
+    const animationDelay = `${150 + index * 40}ms`;
     return (
-        <details className="group animate-fade-in shadow-md hover:shadow-lg transition-shadow duration-300 border border-transparent hover:border-secondary/40 rounded-lg overflow-hidden" style={{ animationDelay }}>
-            <summary className="accordion-summary"> {/* Styles from index.css */}
-                <span>{category.title}</span>
-                <ChevronDown className="accordion-chevron h-6 w-6" />
+        <details className="group animate-fade-in" style={{ animationDelay }}>
+            <summary className="accordion-summary hover:shadow-y2k-soft shadow-y2k-pink-light">
+                <span className='font-heading text-base sm:text-lg flex items-center text-y2k-text-header group-hover:text-y2k-text-onPink'> {/* Text color changes on hover */}
+                  {category.title}
+                </span>
+                <ChevronDown className="accordion-chevron h-5 w-5 sm:h-6 sm:w-6" />
             </summary>
-            <div className="accordion-content"> {/* Styles from index.css */}
-                 <VocabularyTable items={category.items} />
+            <div className="accordion-content">
+                 <VocabularyTableComponent items={category.items} content={content} />
             </div>
         </details>
     );
 };
 
-
-// --- Main App Component ---
 function App() {
-  return (
-     <div className="min-h-screen p-4 pt-6 md:p-8 md:pt-10">
-      <div className="container mx-auto max-w-6xl">
-        <Header />
+  const [currentLangCode, setCurrentLangCode] = useState<LanguageCode>('jp');
+  const currentContent = useMemo(() => availableLanguages[currentLangCode], [currentLangCode]);
 
-        {/* Info Section */}
-        <section className="mb-12 md:mb-16 grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
-          <GrammarInfo />
-          <VowelInfo />
+  useEffect(() => {
+    document.title = currentContent.pageTitle;
+    const favicon = document.querySelector("link[rel~='icon']") as HTMLLinkElement | null;
+    if (favicon && currentContent.customIcon) {
+      favicon.href = currentContent.customIcon;
+    }
+  }, [currentContent]);
+
+  return (
+     <div className="min-h-screen p-3 pt-5 sm:p-4 sm:pt-6 md:p-6 md:pt-8 bg-y2k-bg text-y2k-text">
+      <div className="container mx-auto max-w-6xl">
+        <LanguageSwitcher currentLangCode={currentLangCode} onLangChange={setCurrentLangCode} />
+        <AppHeaderComponent content={currentContent} />
+
+        <section className="mb-10 md:mb-14 grid grid-cols-1 lg:grid-cols-2 gap-5 md:gap-6">
+          <GeneralInfoCard
+            title={currentContent.grammarInfo.title}
+            icon={currentContent.grammarInfo.icon}
+            points={currentContent.grammarInfo.points}
+            className="animate-slide-in-left"
+            currentFontClass={currentContent.fontClass}
+          />
+          <GeneralInfoCard
+            title={currentContent.pronunciationInfo.title}
+            icon={currentContent.pronunciationInfo.icon}
+            intro={currentContent.pronunciationInfo.intro}
+            pronunciationPoints={currentContent.pronunciationInfo.points}
+            outro={currentContent.pronunciationInfo.outro}
+            className="animate-slide-in-right"
+            currentFontClass={currentContent.fontClass}
+          />
         </section>
 
-        {/* Vocabulary Section - Accordion */}
-        <section>
-             {/* Main Vocab title uses Secondary (Cyan) */}
-            <h2 className="text-4xl md:text-5xl font-black text-center mb-8 md:mb-10 text-secondary text-shadow-glow-secondary-md animate-fade-in" style={{ animationDelay: '400ms'}}>
-                Essential Vocabulary Lists
+        <section className="animate-fade-in" style={{ animationDelay: '300ms' }}>
+            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl text-center mb-6 md:mb-8 text-y2k-accent-blue tracking-normal sm:tracking-wide text-shadow-hard-md"
+                style={{ WebkitTextStroke: '1px #005A7D' }}>
+                {currentContent.vocabularyTitle}
             </h2>
            <div className="space-y-4 max-w-4xl mx-auto">
-                {vocabularyData.map((category, index) => (
+                {currentContent.vocabulary.map((category, index) => (
                     <VocabularyAccordionItem
-                        key={category.title}
+                        key={category.title + currentLangCode}
                         category={category}
                         index={index}
+                        content={currentContent}
                     />
                 ))}
             </div>
         </section>
 
-        <footer className="text-center mt-16 md:mt-20 text-muted-foreground text-base font-bold animate-fade-in" style={{ animationDelay: '1000ms'}}>
-          Keep practicing! <span className="font-japanese text-primary font-extrabold text-shadow-glow-primary-xs">がんばって</span> (Ganbatte!) © {new Date().getFullYear()}
+        <footer className="text-center mt-12 md:mt-16 pb-6 text-y2k-text-muted text-sm font-medium animate-fade-in" style={{ animationDelay: '600ms'}}>
+          {currentContent.footerCheer} © {new Date().getFullYear()} Happy Learning!
         </footer>
       </div>
     </div>
