@@ -1,7 +1,5 @@
 # Language Kickstart
 
-<img width="919" alt="Screenshot 2025-05-07 111501" src="https://github.com/user-attachments/assets/6b9c8bbf-8e83-455b-b835-236971240122" />
-
 ## Description
 
 Language Kickstart is a vibrant web application designed to help users begin their journey in learning new languages, currently featuring **Japanese** and **Spanish**. It presents key concepts including core grammar rules and essential vocabulary in an organized, easy-to-reference format, all wrapped in a fun, Y2K-inspired retro theme.
